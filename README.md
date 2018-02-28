@@ -1,7 +1,5 @@
 # Shell agent
 
-[![Build Status](https://travis-ci.org/puppetlabs/mcollective-shell-agent.svg?branch=master)](https://travis-ci.org/puppetlabs/mcollective-shell-agent)
-
 The shell agent allows you to start and manage shell commands via
 mcollective.
 
@@ -9,13 +7,6 @@ It allows the running of long-running processes with a mechanism to check in
 on the output from these long-running processes, which is independent of the
 mcollective daemon process (the daemon can be restarted without interrupting
 the processes)
-
-To use this agent you need at least:
-
-* MCollective 2.2.4
-* Ruby 1.9 (for Process#spawn)
-
-Please report any errors or make feature requests in the [MCOP jira project][MCOP]
 
 Please note: we do not recommend this agent as a way of building out your
 automation, for that you're still better off writing your own tailored
@@ -25,28 +16,31 @@ at the ad-hoc needs that people occasionally have.
 [writing-agents]: http://docs.puppetlabs.com/mcollective/simplerpc/agents.html
 [MCOP]: http://tickets.puppetlabs.com/browse/MCOP
 
+<!--- actions -->
+
 ## Installation
 
-Follow the [basic plugin install guide][install guide], taking all
-the code from lib and adding it to your MCollective $libdir
+Add the agent and client:
 
-[install guide]: https://docs.puppet.com/mcollective/deploy/plugins.html
-
+```yaml
+mcollective::plugin_classes:
+  - mcollective_agent_shell
+```
 
 ## Configuring the agent
 
 The agent should work without any additional configuration, though there are
-some options you can tune the mcollective server.cfg.
+some options you can tune via Hiera.
 
-### `plugin.shell.state_directory`
+### `.state_directory`
 
 This is where the state used to track processes will live.  By default this
-will be /var/run/mcollective-shell on Unix systems.
+will be `/var/run/mcollective-shell` on Unix systems.
 
+```yaml
+mcollective_agent_shell::config:
+  state_directory: /opt/run/mcollective-shell
 ```
-plugin.shell.state_directory = /opt/run/mcollective-shell
-```
-
 
 ## Application usage
 
