@@ -1,2 +1,0 @@
-lib/mcollective/agent/*.rb usr/share/mcollective/plugins/mcollective/agent/
-lib/mcollective/agent/shell/*.rb usr/share/mcollective/plugins/mcollective/agent/shell/
