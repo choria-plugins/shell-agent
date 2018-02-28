@@ -22,7 +22,7 @@ task :default => :test
 
 desc "Expands the action details section in a README.md file"
 task :readme_expand do
-  ddl_file = Dir.glob(File.join("agent/*.ddl")).first
+  ddl_file = Dir.glob("lib/mcollective/agent/*.ddl").first
 
   return unless ddl_file
 
@@ -68,7 +68,7 @@ task :build_prep do
   cp "README.md", "puppet"
   cp "CHANGELOG.md", "puppet"
   cp "LICENSE.txt", "puppet"
-  cp "NOTICE", "puppet"
+  cp "NOTICE.txt", "puppet"
 
   Rake::Task[:readme_expand].execute
 end
