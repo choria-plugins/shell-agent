@@ -3,12 +3,12 @@ require 'spec_helper'
 module MCollective
   module Agent
     describe Shell do
-      let(:agent_file) { File.join('lib', 'mcollective', 'agent', 'shell.rb')}
+      let(:agent_file) { File.join('agent', 'shell.rb')}
       let(:agent) { MCollective::Test::LocalAgentTest.new('shell', :agent_file => agent_file).plugin }
 
       describe '#run' do
         it 'should delegate to #run_command' do
-          agent.expects(:run_command).with({:command => 'echo foo'}).returns({
+          agent.expects(:run_command).with(instance_of(MCollective::RPC::Request)).returns({
             :exitcode => 0,
             :stdout => "foo\n",
             :stderr => '',
