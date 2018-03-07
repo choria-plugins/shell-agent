@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_shell`
 
+# 1.0.2
+
+Release 2018-03-07
+
+ * Further adjustments for compatability with the mco plugin packager (#3)
+
 # 1.0.1
 
 Release 2018-03-06
