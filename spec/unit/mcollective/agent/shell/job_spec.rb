@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'mcollective/agent/shell/job'
+require 'agent/shell/job'
 
 module MCollective
   module Agent
