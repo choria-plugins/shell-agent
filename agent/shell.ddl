@@ -2,7 +2,7 @@ metadata    :name        => "shell",
             :description => "Run commands with the local shell",
             :author      => "Puppet Labs",
             :license     => "Apache-2.0",
-            :version     => "1.0.2",
+            :version     => "1.0.3",
             :url         => "https://github.com/choria-plugins/shell-agent",
             :timeout     => 180
 

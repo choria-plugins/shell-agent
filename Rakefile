@@ -67,8 +67,8 @@ task :build_prep do
 
   cp "README.md", "puppet"
   cp "CHANGELOG.md", "puppet"
-  cp "LICENSE.txt", "puppet"
-  cp "NOTICE.txt", "puppet"
+  cp "LICENSE", "puppet"
+  cp "NOTICE", "puppet"
 
   Rake::Task[:readme_expand].execute
 end
