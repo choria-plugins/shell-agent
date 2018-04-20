@@ -2,6 +2,13 @@
 
 Change history for `choria/mcollective_agent_shell`
 
+# 1.0.3
+
+Released 2018-04-20
+
+ * Include JSON DDL files
+ * Add Licencing files and contribution guidelines
+
 # 1.0.2
 
 Release 2018-03-07

@@ -2,7 +2,7 @@ Gemfile.lock
 ext/packaging
 puppet/README.md
 puppet/CHANGELOG.md
-puppet/LICENSE.txt
-puppet/NOTICE.txt
+puppet/LICENSE
+puppet/NOTICE
 *.tar.gz
 .ruby-version
