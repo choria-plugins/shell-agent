@@ -75,5 +75,5 @@ end
 
 desc "Builds the module found in the current directory, run build_prep first"
 task :build do
-  sh "/opt/puppetlabs/puppet/bin/mco plugin package --format aiomodulepackage --vendor choria"
+  sh "/opt/puppetlabs/puppet/bin/mco plugin package --vendor choria"
 end
