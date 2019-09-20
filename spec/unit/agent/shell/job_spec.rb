@@ -178,7 +178,7 @@ module MCollective
           it 'should blow away the state directory' do
             job = Job.new
             job.stubs(:state_directory).returns('test')
-            FileUtils.expects(:remove_entry_secure).with('test')
+            FileUtils.expects(:remove_entry_secure).with('test', :force => true)
             job.cleanup_state
 
             # explicitly unstub so the after block can fire
