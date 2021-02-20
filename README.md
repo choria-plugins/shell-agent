@@ -169,3 +169,29 @@ $ mco shell kill 0dd67fac-734f-4824-8b4d-03100d4f9d07
 
 Finished processing 2 / 2 hosts in 170.17 ms
 ```
+
+## Known Issues
+
+### Encoding Concerns
+
+Sometimes when running certain commands, you may encounter UTF-8 characters 
+in the reply. This can result in an error, "Cannot decode output from Shim",
+coming back from mcollective. In order to work around this, you can choose
+to set LC_ALL=en for the choria-server service. Under systemd, for example,
+create the following file at 
+
+/etc/systemd/system/choria-server.service.d/environment.conf
+
+```
+[Service]
+Environment="LC_ALL=en"
+```
+
+And then restart choria-server
+
+```
+root@myhost:~$ systemctl restart choria-server
+```
+
+Note that this change will apply to all choria interactions, so could have
+untested and unintended consequences.
