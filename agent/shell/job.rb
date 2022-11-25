@@ -98,7 +98,7 @@ module MCollective
         end
 
         def stdout(offset = 0)
-          fh = File.new("#{state_directory}/stdout", 'rb')
+          fh = File.new("#{state_directory}/stdout", 'r')
           fh.seek(offset, IO::SEEK_SET)
           out = fh.read
           fh.close
@@ -106,7 +106,7 @@ module MCollective
         end
 
         def stderr(offset = 0)
-          fh = File.new("#{state_directory}/stderr", 'rb')
+          fh = File.new("#{state_directory}/stderr", 'r')
           fh.seek(offset, IO::SEEK_SET)
           err = fh.read
           fh.close
