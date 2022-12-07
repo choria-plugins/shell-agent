@@ -70,7 +70,7 @@ module MCollective
             state_directory = job.send(:state_directory)
 
             filehandle = mock('filehandle')
-            File.expects(:new).with("#{state_directory}/stdout", 'rb').returns(filehandle)
+            File.expects(:new).with("#{state_directory}/stdout", 'r').returns(filehandle)
             filehandle.expects(:seek).with(0, IO::SEEK_SET)
             filehandle.expects(:read).returns("some data")
             filehandle.expects(:close)
@@ -82,7 +82,7 @@ module MCollective
             state_directory = job.send(:state_directory)
 
             filehandle = mock('filehandle')
-            File.expects(:new).with("#{state_directory}/stdout", 'rb').returns(filehandle)
+            File.expects(:new).with("#{state_directory}/stdout", 'r').returns(filehandle)
             filehandle.expects(:seek).with(5, IO::SEEK_SET)
             filehandle.expects(:read).returns("some data at an offset")
             filehandle.expects(:close)
@@ -96,7 +96,7 @@ module MCollective
             state_directory = job.send(:state_directory)
 
             filehandle = mock('filehandle')
-            File.expects(:new).with("#{state_directory}/stderr", 'rb').returns(filehandle)
+            File.expects(:new).with("#{state_directory}/stderr", 'r').returns(filehandle)
             filehandle.expects(:seek).with(0, IO::SEEK_SET)
             filehandle.expects(:read).returns("some data")
             filehandle.expects(:close)
@@ -108,7 +108,7 @@ module MCollective
             state_directory = job.send(:state_directory)
 
             filehandle = mock('filehandle')
-            File.expects(:new).with("#{state_directory}/stderr", 'rb').returns(filehandle)
+            File.expects(:new).with("#{state_directory}/stderr", 'r').returns(filehandle)
             filehandle.expects(:seek).with(5, IO::SEEK_SET)
             filehandle.expects(:read).returns("some data at an offset")
             filehandle.expects(:close)
