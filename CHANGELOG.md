@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_shell`
 
+# 1.0.5
+
+Release 2023-09-18
+
+ * Improve processing STDOUT and STDERR and support for non-ASCCI-7BIT characters
+
 # 1.0.4
 
 Released 2019-09-20
