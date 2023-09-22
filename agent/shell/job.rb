@@ -44,12 +44,12 @@ module MCollective
             @handle = handle
 
             commandfile = "#{state_directory}/command"
-            if File.exists?(commandfile)
+            if File.exist?(commandfile)
               @command = IO.read(commandfile).chomp
             end
 
             pidfile = "#{state_directory}/pid"
-            if File.exists?(pidfile)
+            if File.exist?(pidfile)
               @pid = Integer(IO.read(pidfile))
             end
 
@@ -83,13 +83,13 @@ module MCollective
           end
 
           # busy wait for a pid or error file
-          while !File.exists?("#{state_directory}/pid") && !File.exists?("#{state_directory}/error")
+          while !File.exist?("#{state_directory}/pid") && !File.exist?("#{state_directory}/error")
             sleep 0.1
           end
 
           ::Process.detach(manager)
 
-          if File.exists?("#{state_directory}/pid")
+          if File.exist?("#{state_directory}/pid")
             @pid = Integer(IO.read("#{state_directory}/pid"))
           else
             # we must have an error file
@@ -114,17 +114,17 @@ module MCollective
         end
 
         def status
-          if File.exists?("#{state_directory}/error")
+          if File.exist?("#{state_directory}/error")
             # Process failed to start
             return :failed
           end
 
-          if !File.exists?("#{state_directory}/pid")
+          if !File.exist?("#{state_directory}/pid")
             # We haven't started yet
             return :starting
           end
 
-          if File.exists?("#{state_directory}/exitstatus")
+          if File.exist?("#{state_directory}/exitstatus")
             # The manager has written out the exitstatus, so the process is done
             return :stopped
           end
@@ -161,7 +161,7 @@ module MCollective
 
         def get_exitcode
           statusfile = "#{state_directory}/exitstatus"
-          if File.exists?(statusfile)
+          if File.exist?(statusfile)
             status = Integer(IO.read(statusfile))
             @signal = status & 0xff
             @exitcode = status >> 8
