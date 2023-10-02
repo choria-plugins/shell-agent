@@ -54,7 +54,7 @@ module MCollective
               :out => :close,
               :err => :close,
             }).returns(53)
-            File.expects(:exists?).with("#{state_directory}/pid").returns(true).twice
+            File.expects(:exist?).with("#{state_directory}/pid").returns(true).twice
             IO.expects(:read).with("#{state_directory}/pid").returns("54\n")
             job.start_command('echo foo')
             job.pid.should == 54
@@ -124,27 +124,27 @@ module MCollective
           end
 
           it 'should be :failed if there is an error file' do
-            File.expects(:exists?).with('test/error').returns(true)
+            File.expects(:exist?).with('test/error').returns(true)
             job.status.should == :failed
           end
 
           it 'should be :starting if there is no pid' do
-            File.expects(:exists?).with('test/error').returns(false)
-            File.expects(:exists?).with('test/pid').returns(false)
+            File.expects(:exist?).with('test/error').returns(false)
+            File.expects(:exist?).with('test/pid').returns(false)
             job.status.should == :starting
           end
 
           it 'should be :stopped is there is an exitstatus' do
-            File.expects(:exists?).with('test/error').returns(false)
-            File.expects(:exists?).with('test/pid').returns(true)
-            File.expects(:exists?).with('test/exitstatus').returns(true)
+            File.expects(:exist?).with('test/error').returns(false)
+            File.expects(:exist?).with('test/pid').returns(true)
+            File.expects(:exist?).with('test/exitstatus').returns(true)
             job.status.should == :stopped
           end
 
           it 'should be :running if there is no exitstatus' do
-            File.expects(:exists?).with('test/error').returns(false)
-            File.expects(:exists?).with('test/pid').returns(true)
-            File.expects(:exists?).with('test/exitstatus').returns(false)
+            File.expects(:exist?).with('test/error').returns(false)
+            File.expects(:exist?).with('test/pid').returns(true)
+            File.expects(:exist?).with('test/exitstatus').returns(false)
             job.status.should == :running
           end
         end
