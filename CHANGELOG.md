@@ -2,9 +2,15 @@
 
 Change history for `choria/mcollective_agent_shell`
 
+# 1.0.6
+
+Released 2023-10-06
+
+ * Improve Puppet 8 support
+
 # 1.0.5
 
-Release 2023-09-18
+Released 2023-09-18
 
  * Improve processing STDOUT and STDERR and support for non-ASCCI-7BIT characters
 
