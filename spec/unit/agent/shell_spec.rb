@@ -53,9 +53,9 @@ module MCollective
         end
 
         it 'raise on a non-existent command' do
-          expect {
+          lambda {
             agent.send(:run_command, :command => 'i_really_should_not_exist')
-          }.to raise_error(/No such file or directory - i_really_should_not_exist/)
+          }.should raise_error(/No such file or directory - i_really_should_not_exist/)
         end
 
         context 'timeout' do
