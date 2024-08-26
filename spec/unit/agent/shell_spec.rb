@@ -3,7 +3,7 @@ require 'spec_helper'
 module MCollective
   module Agent
     describe Shell do
-      let(:agent_file) { File.join('agent', 'shell.rb')}
+      let(:agent_file) { File.join('files', 'mcollective', 'agent', 'shell.rb')}
       let(:agent) { MCollective::Test::LocalAgentTest.new('shell', :agent_file => agent_file).plugin }
 
       describe '#run' do

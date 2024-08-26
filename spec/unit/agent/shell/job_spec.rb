@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative "../../../../agent/shell/job"
+require_relative "../../../../files/mcollective/agent/shell/job"
 
 module MCollective
   module Agent

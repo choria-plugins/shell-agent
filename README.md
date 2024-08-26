@@ -16,7 +16,15 @@ at the ad-hoc needs that people occasionally have.
 [writing-agents]: http://docs.puppetlabs.com/mcollective/simplerpc/agents.html
 [MCOP]: http://tickets.puppetlabs.com/browse/MCOP
 
-<!--- actions -->
+## Actions
+
+This agent provides the following actions, for details about each please run `mco plugin doc agent/shell`
+
+ * **kill** - Kill a command by handle
+ * **list** - Get a list of all running commands
+ * **run** - Run a command
+ * **start** - Spawn a command
+ * **status** - Get status of managed command
 
 ## Installation
 

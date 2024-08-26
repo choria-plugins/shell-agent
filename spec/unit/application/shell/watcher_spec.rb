@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative "../../../../application/shell"
+require_relative "../../../../files/mcollective/application/shell"
 
 module MCollective
   class Application
