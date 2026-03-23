@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_shell`
 
+## 1.2.0
+
+Released 2026-03-24
+
+ * Add statuses action for batch handle queries
+
 ## 1.1.0
 
 Released 2024-08-26
