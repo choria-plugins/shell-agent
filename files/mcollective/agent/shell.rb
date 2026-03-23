@@ -25,6 +25,26 @@ module MCollective
         end
       end
 
+      action 'statuses' do
+        handles = request[:handles]
+        results = {}
+        handles.each do |handle|
+          begin
+            job = Job.new(handle)
+            entry = {
+              :status  => job.status,
+              :stdout  => job.stdout,
+              :stderr  => job.stderr,
+            }
+            entry[:exitcode] = job.exitcode if job.status == :stopped
+            results[handle] = entry
+          rescue StandardError => error
+            results[handle] = { :status => :error, :error => error.message }
+          end
+        end
+        reply[:statuses] = results
+      end
+
       action 'kill' do
         handle = request[:handle]
         job = Job.new(handle)

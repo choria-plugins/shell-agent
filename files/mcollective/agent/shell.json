@@ -97,6 +97,27 @@
       "description": "Run a command"
     },
     {
+      "action": "statuses",
+      "input": {
+        "handles": {
+          "prompt": "Handles",
+          "description": "Array of command handles to query",
+          "type": "array",
+          "default": null,
+          "optional": false
+        }
+      },
+      "output": {
+        "statuses": {
+          "description": "status and output keyed by handle",
+          "display_as": "statuses",
+          "default": null
+        }
+      },
+      "display": "always",
+      "description": "Get status and output of multiple managed commands"
+    },
+    {
       "action": "start",
       "input": {
         "command": {

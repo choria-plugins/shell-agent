@@ -127,6 +127,20 @@ action "list", :description => "Get a list of all running commands" do
 
 end
 
+action "statuses", :description => "Get status and output of multiple managed commands" do
+    display :always
+
+    input   :handles,
+            :prompt      => "Handles",
+            :description => "Array of command handles to query",
+            :type        => :array,
+            :optional    => false
+
+    output  :statuses,
+            :description => "status and output keyed by handle",
+            :display_as  => "statuses"
+end
+
 action "kill", :description => "Kill a command by handle" do
     display :always
 

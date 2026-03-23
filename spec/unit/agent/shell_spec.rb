@@ -18,6 +18,79 @@ module MCollective
         end
       end
 
+      describe '#statuses' do
+        let(:reply) { {} }
+
+        before :each do
+          agent.stubs(:reply).returns(reply)
+          @tmpdir = Dir.mktmpdir
+          Shell::Job.stubs(:state_path).returns(@tmpdir)
+        end
+
+        after :each do
+          FileUtils.remove_entry_secure @tmpdir
+        end
+
+        it 'should return stdout, stderr, and exitcode for stopped jobs' do
+          job = Shell::Job.new
+          job.start_command('echo foo')
+          job.wait_for_process
+
+          agent.call(:statuses, :handles => [job.handle])
+          statuses = reply[:statuses]
+          statuses.should have_key(job.handle)
+          statuses[job.handle][:status].should == :stopped
+          statuses[job.handle][:stdout].should == "foo\n"
+          statuses[job.handle][:stderr].should == ''
+          statuses[job.handle][:exitcode].should == 0
+        end
+
+        it 'should return stdout and stderr for running jobs' do
+          job = Shell::Job.new
+          job.start_command(%{ruby -e 'STDOUT.sync = true; puts "partial"; sleep 60'})
+          sleep 0.5
+
+          agent.call(:statuses, :handles => [job.handle])
+          statuses = reply[:statuses]
+          statuses[job.handle][:status].should == :running
+          statuses[job.handle][:stdout].should == "partial\n"
+          statuses[job.handle][:stderr].should == ''
+          statuses[job.handle].should_not have_key(:exitcode)
+
+          job.kill
+          job.wait_for_process
+        end
+
+        it 'should return error for invalid handle without affecting valid handles' do
+          job = Shell::Job.new
+          job.start_command('echo good')
+          job.wait_for_process
+
+          agent.call(:statuses, :handles => [job.handle, 'nonexistent-handle'])
+          statuses = reply[:statuses]
+          statuses[job.handle][:status].should == :stopped
+          statuses[job.handle][:stdout].should == "good\n"
+          statuses['nonexistent-handle'][:status].should == :error
+          statuses['nonexistent-handle'].should have_key(:error)
+        end
+
+        it 'should handle multiple handles in one call' do
+          job_one = Shell::Job.new
+          job_one.start_command('echo one')
+          job_one.wait_for_process
+
+          job_two = Shell::Job.new
+          job_two.start_command('echo two')
+          job_two.wait_for_process
+
+          agent.call(:statuses, :handles => [job_one.handle, job_two.handle])
+          statuses = reply[:statuses]
+          statuses.keys.size.should == 2
+          statuses[job_one.handle][:stdout].should == "one\n"
+          statuses[job_two.handle][:stdout].should == "two\n"
+        end
+      end
+
       describe '#run_command' do
         let(:reply) { {} }
 
