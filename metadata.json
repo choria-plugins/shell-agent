@@ -1,6 +1,6 @@
 {
   "name": "choria-mcollective_agent_shell",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "R.I.Pienaar <rip@devco.net>",
   "license": "Apache-2.0",
   "summary": "Run commands with the local shell",
