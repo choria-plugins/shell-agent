@@ -2,6 +2,12 @@
 
 Change history for `choria/mcollective_agent_shell`
 
+## 1.2.1
+
+Released 2026-03-29
+
+ * Update DDL versions
+
 ## 1.2.0
 
 Released 2026-03-24
